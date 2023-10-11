@@ -12,6 +12,13 @@ const conn = require('./db/conn')
 const User = require('./models/User')
 const Tought = require('./models/Tought')
 
+//IMPORTAR AS ROTAS
+const toughtsRouters = require('./routes/toughtsRouters')
+const authRouters = require('./routes/authRoutes')
+
+//IMPORTAR CONTROLADOR RESPONSÁVEL PELA HOME
+const ToughtController = require('./controllers/ToughtController')
+
 //Import Engine
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
@@ -51,6 +58,12 @@ app.use((request, response, next)=>{
   }
   next()
 })
+
+//ROTAS
+app.use('/toughts', toughtsRouters)
+app.use('/', authRouters)
+
+app.get('/', ToughtController.showToughts)
 
 conn
   .sync()

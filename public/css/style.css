@@ -1,0 +1,117 @@
+:root{
+  --background: #1c1b1b;
+  --blue:#068FFF;
+  --white:#FFF;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--white);
+}
+
+/*NAVBAR*/
+#logo img{
+  height: 50px;
+}
+
+#navbar{
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background);
+  border-bottom: 2px solid var(--white);
+}
+
+#navbar ul{
+  display: flex;
+  list-style: none;
+}
+
+#navbar ul li{
+  margin-left: 1rem;
+}
+
+#navbar ul li a{
+  text-decoration: none;
+  font-weight: bold;
+  transition: .5s;
+}
+
+#navbar ul li a:hover{
+  color: var(--blue);
+}
+
+/*CONTAINER*/
+.container{
+  min-height: 70vh;
+  padding: 2rem;
+}
+
+/*FOOTER*/
+footer{
+  height: 150px;
+  display: grid;
+  place-items: center;
+  border-top: 2px solid var(--white);
+}
+footer span{
+  font-weight: bold;
+  color: var(--blue);
+}
+
+/** Register */
+
+.sectionRegister {
+  max-width: 468px;
+  max-height: 500px;
+  margin: auto;
+}
+
+.sectionRegister h1 {
+  padding: 10px 0;
+}
+
+.sectionRegister h1::before {
+  content: "";
+  padding: 3px;
+  margin-right: 5px;
+  background-color: #068FFF;
+}
+
+.formRegister {
+  display: flex;
+  flex-direction: column;
+}
+
+.formRegister label {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.formRegister input {
+  border: 2px solid white;
+  padding: 10px;
+}
+
+.formRegister input[type=submit]{
+  margin-top: 20px ;
+  max-width: 154px;
+  border-color: #068FFF;
+  color: #068FFF;
+  font-size: 20px;
+  font-weight: bold;
+}
+.sectionRegister p {
+  margin-top: 20px;
+}
+
+.sectionRegister a {
+  color: #068FFF;
+}
