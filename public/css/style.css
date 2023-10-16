@@ -107,11 +107,32 @@ footer span{
   color: #068FFF;
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
+  transition: .5s;
+  border-radius: 5px;
 }
+
+.formRegister input[type=submit]:hover{
+  background-color: var(--blue);
+  color: var(--white);
+}
+
 .sectionRegister p {
   margin-top: 20px;
 }
 
 .sectionRegister a {
   color: #068FFF;
+}
+
+/*MESSAGE*/
+.message{
+  padding: 1rem;
+  color: var(--blue);
+  background-color: var(--white);
+  border: 1px solid var(--blue);
+  border: 5px;
+  text-align: center;
+  margin: 0 auto 2rem;
+  width: 60%;
 }

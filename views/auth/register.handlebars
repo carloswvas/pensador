@@ -1,6 +1,6 @@
 <section class="sectionRegister">
   <h1>Registrar</h1>
-  <form action="" class="formRegister">
+  <form action="/register" method="post" class="formRegister">
     <label for="name">Nome:</label>
     <input type="text" id="name" name="name" placeholder="Digite seu nome" />
     <label for="email">E-mail</label>
@@ -10,18 +10,18 @@
       name="email"
       placeholder="Digite seu email"
     />
-    <label for="senha">Senha:</label>
+    <label for="password">Senha:</label>
     <input
       type="password"
-      id="senha"
-      name="senha"
+      id="password"
+      name="password"
       placeholder="Digite sua senha"
     />
-    <label for="confirmeSenha">Confirmação de senha:</label>
+    <label for="confirmpassword">Confirmação de senha:</label>
     <input
       type="password"
-      id="confirmeSenha"
-      name="confirmeSenha"
+      id="confirmpassword"
+      name="confirmpassword"
       placeholder="Confirme a sua senha"
     />
     <input type="submit" value="Cadastrar" />
