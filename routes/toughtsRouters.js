@@ -7,9 +7,15 @@ const ToughtController = require('../controllers/ToughtController')
 // importar o middleware de autenticação de usuário
 const checkAuth = require('../helpers/auth').checkAuth
 
-router.get('/dashboard', checkAuth, ToughtController.dashboard)
 router.get('/add', checkAuth, ToughtController.createTought)
 router.post('/add', checkAuth, ToughtController.createToughtSave)
+
+router.get('/edit/:id', checkAuth, ToughtController.updateTought)
+router.post('/edit/:id', checkAuth, ToughtController.updateToughtPost)
+
+router.post('/remove', checkAuth, ToughtController.removeTought)
+router.get('/dashboard', checkAuth, ToughtController.dashboard)
+
 router.get('/', ToughtController.showToughts)
 
 //Exportar a rota
