@@ -1,30 +1,33 @@
-<section class="sectionRegister">
-  <h1>Registrar</h1>
-  <form action="/register" method="post" class="formRegister">
-    <label for="name">Nome:</label>
-    <input type="text" id="name" name="name" placeholder="Digite seu nome" />
-    <label for="email">E-mail</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="Digite seu email"
-    />
-    <label for="password">Senha:</label>
+<section class="auth-container">
+  <h2>Registrar</h2>
+  <form action="/register" method="POST">
+
+    <div class="form-control">
+      <label for="name">Nome:</label>
+      <input type="text" name="name" required placeholder="Digite seu nome" />
+    </div>
+
+    <div class="form-control">
+      <label for="email">E-mail:</label>
+    <input type="email" name="email" required placeholder="Digite seu E-mail" />
+    </div>
+
+    <div class="form-control">
+      <label for="password">Senha:</label>
+    <input type="password" name="password" required placeholder="Digite sua senha" />
+    </div>
+
+    <div class="form-control">
+      <label for="confirmpassword">Confirmação de Senha:</label>
     <input
       type="password"
-      id="password"
-      name="password"
-      placeholder="Digite sua senha"
-    />
-    <label for="confirmpassword">Confirmação de senha:</label>
-    <input
-      type="password"
-      id="confirmpassword"
       name="confirmpassword"
-      placeholder="Confirme a sua senha"
+      required
+      placeholder="Confirme sua senha"
     />
-    <input type="submit" value="Cadastrar" />
+    </div>
+
+    <input type="submit" value="Cadastrar" class="btn"/>
+    <p>Já tem conta <a href="#">Clique aqui</a></p>
   </form>
-  <p>Já tem conta? <a href="#">Clique aqui!</a></p>
 </section>

@@ -1,100 +1,94 @@
-const User = require('../models/User')
+const User = require("../models/User");
 
-//Criptografar a senha
-const bcrypt = require('bcryptjs')
+//criptografar a senha
+const bcrypt = require("bcryptjs");
 
-module.exports = class AuthController{
-  static login(request, response){
-    return response.render('auth/login')
+module.exports = class AuthController {
+  static async login(request, response) {
+    return response.render("auth/login");
   }
 
-  static async loginPost(request, response){
-    const {email, password} = request.body
+  static async loginPost(request, response) {
+    const { email, password} = request.body;
+    // const password = request.body.password
 
-    const user = await User.findOne({where:{email:email}})
+    const user = await User.findOne({ where: { email: email } });
 
-    //1º - Match User
-    if(!user){
-      request.flash('message','Usuário não encontrado')
-      response.render('auth/login')
-      return
+    //Validar Email
+    if (!user) {
+      request.flash("message", "Usuário não encontrado");
+      response.redirect("/login");
     }
 
-    //2º Validar a senha do usuário
+    console.log(user.password)
+
+    // validar a senha
     const passwordMatch = bcrypt.compareSync(password, user.password)
-    if(!passwordMatch){
-      request.flash('message','Senha inválida')
-      response.render('auth/login')
+    if (!passwordMatch) {
+      request.flash("message", "Senha inválida");
+      response.render("auth/login");
       return
     }
 
     request.session.userId = user.id;
 
-    request.flash('message','Bem vindo')
+    request.flash("message", "Autenticação realizada com sucesso!");
 
-    request.session.save(()=>{
-      response.redirect('/')
-    })
+    request.session.save(() => {
+      response.redirect("/");
+    });
 
   }
 
-  static register(request, response){
-    return response.render('auth/register')
+  static async register(request, response) {
+    return response.render("auth/register");
   }
 
-  static async registerPost(request, response){
-    const {name, email, password, confirmpassword} = request.body
+  static async registerPost(request, response) {
+    const { name, email, password, confirmpassword } = request.body;
 
-    //1º - Validação de senha - password math
-    if(password != confirmpassword){
-      request.flash('message', 'As senhas não conferem, tente novamente')
-      response.render('auth/register')
-      return
+    if (password != confirmpassword) {
+      request.flash("message", "As senhas não conferem, tente novamente");
+      return response.render("auth/register");
     }
 
-    //2º - validação de email -
-    const checkedIfExists = await User.findOne({where:{email:email}})
-    if(checkedIfExists){
-      request.flash('message', 'O e-mail já esta em uso!')
-      response.render('auth/register')
-      return
+    //validação de email - Verificar se email já está cadastrado
+    const checkIfUserExist = await User.findOne({ where: { email: email } });
+    if (checkIfUserExist) {
+      request.flash("message", "O e-mail já está em uso!");
+      response.render("auth/register");
+      return;
     }
 
-    //3º - criptografia do password
-    // salt = quantidade de caracteres extras na cript.
-    const salt = bcrypt.genSaltSync(10)
-    const hashedPassword = bcrypt.hashSync(password, salt)
+    //Criptografar a senha do usuário
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
 
-    //4º - criar usuário no banco
+    //criar o objeto usuário para cadastro no banco
     const user = {
       name,
       email,
-      password:hashedPassword
-    }
+      password: hashedPassword,
+    };
 
+    //TRY - Inserir usuário no banco e Trabalhar com sessão
     try {
-      //5º - Regra de negócio do app
-      const createdUser = await User.create(user)
+      const createdUser = await User.create(user);
 
-      request.session.userId = createdUser.id
+      request.session.userId = createdUser.id;
 
-      request.flash('message', 'Cadastro realizado com sucesso!')
+      request.flash("message", "Cadastro realizado com sucesso!");
 
-      request.session.save(()=>{
-        response.redirect('/')
-      })
-      // return
-
+      request.session.save(() => {
+        response.redirect("/");
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
-
   }
 
-  static async logout(request, response){
-    request.session.destroy()
-    return response.redirect('/login')
+  static async logout(request, response) {
+    request.session.destroy();
+    response.redirect("/login");
   }
-
-}
+};

@@ -1,23 +1,15 @@
-<section class="sectionRegister">
-  <h1>Login</h1>
-  <form action="/login" method="post" class="formRegister">
-
-    <label for="email">E-mail</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="Digite seu email"
-    />
-    <label for="password">Senha:</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      placeholder="Digite sua senha"
-    />
-
-    <input type="submit" value="Login" />
+<section class="auth-container">
+  <h2>Entrar</h2>
+  <form action="/login" method="post">
+    <div class="form-control">
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" placeholder="Digite seu email">
+    </div>
+    <div class="form-control">
+      <label for="password">Senha:</label>
+      <input type="password" name="password" placeholder="Digite sua senha ">
+    </div>
+    <input type="submit" value="Entrar">
   </form>
-  <p>Não tem uma conta? <a href="/register">Clique aqui!</a></p>
+  <p>Já tem conta <a href="#">Clique aqui</a></p>
 </section>

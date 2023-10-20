@@ -1,15 +1,15 @@
 <section class="dashboard">
   <div class="title-container">
-    <h2>Dashboard:</h2>
+    <h2>Dashboard</h2>
     <a href="/toughts/add" class="btn">Criar Pensamento</a>
   </div>
-  <h3>Seus pensamentos:</h3>
+  <h3>Seus Pensamentos:</h3>
   <ul>
     {{#each toughts}}
       <li>
-        <span class="">{{this.title}}</span>
-        <span class="actions">
-          <a href="/toughts/edit/{{this.id}}" class="btn"> Editar</a>
+        <span>{{this.title}}</span>
+        <span>
+          <a href="/toughts/edit/{{this.id}}" class="btn" >Editar</a>
           <form action="/toughts/remove" method="post">
             <input type="hidden" name="id" value="{{this.id}}">
             <input type="submit" value="Excluir" class="btn">
@@ -18,4 +18,7 @@
       </li>
     {{/each}}
   </ul>
+  {{#if emptyTought}}
+    <p>Ainda não existe pensamentos, comece a criar <a href="/toughts/add"> Por aqui</a></p>
+  {{/if}}
 </section>
